@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="../Scripts/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+    <h2>Ajax Upload Sample</h2>
+
+    <form id="fileinfo" action="/Drives/X" enctype="multipart/form-data">
+        <label>File:</label>
+        <input name="file" type="file" required="required" />
+        <label>Path:</label>
+        <input name="path" type="text" required="required" placeholder="/mydir/myword.docx" />
+        <input name="isReadOnly" type="checkbox" />ReadOnly
+        <label>CreationTime:</label>
+        <input name="creationTime" type="text" placeholder="YYYY-MM-DDTHH:MI:SS.FFFFFFFZ" />
+        <label>LastAccessTime:</label>
+        <input name="lastAccessTime" type="text" placeholder="YYYY-MM-DDTHH:MI:SS.FFFFFFFZ" />
+        <label>LastWriteTime:</label>
+        <input name="lastWriteTime" type="text" placeholder="YYYY-MM-DDTHH:MI:SS.FFFFFFFZ" />
+    </form>
+
+    <button id="submit" type="button">Submit</button>
+    <script>
+        $(document).ready(function () {
+            $('#submit').click(function () {
+                var oData = new FormData(document.forms["fileinfo"]);
+                var oReq = new XMLHttpRequest();
+                var url = $("#fileinfo").attr("action");
+                oReq.open("post", url);           
+                oReq.send(oData);
+            });
+        });
+    </script>
+</body>
+</html>

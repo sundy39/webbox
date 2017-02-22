@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <h2>Upload Sample</h2>
+
+    <form method="post" action="/Drives/X" enctype="multipart/form-data">
+        <label>File:</label>
+        <input name="file" type="file" required="required" />
+        <label>Path:</label>
+        <input name="path" type="text" required="required" placeholder="/mydir/myword.docx" />
+        <input name="isReadOnly" type="checkbox" />ReadOnly
+        <label>CreationTime:</label>
+        <input name="creationTime" type="text" placeholder="YYYY-MM-DDTHH:MI:SS.FFFFFFFZ" />
+        <label>LastAccessTime:</label>
+        <input name="lastAccessTime" type="text" placeholder="YYYY-MM-DDTHH:MI:SS.FFFFFFFZ" />
+        <label>LastWriteTime:</label>
+        <input name="lastWriteTime" type="text" placeholder="YYYY-MM-DDTHH:MI:SS.FFFFFFFZ" />
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

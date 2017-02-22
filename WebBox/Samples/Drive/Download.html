@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Download Sample</title>
+    <meta charset="utf-8" />
+    <script src="../Scripts/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+    <h2>Download Sample</h2>
+
+    <table id="files-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <form id="download-form" style="display:none" method="get" action="/Drives/Z">
+        <input name="path" type="hidden" value="" />
+        <input name="download" type="hidden" value="download" />
+    </form>
+
+    <script>
+        $(document).ready(function () {
+
+            var url = $('#download-form').attr('action');
+            var path = encodeURIComponent('Windows');
+            url += '?path=/' + path;
+
+            $.getJSON(url, {}, function (data) {
+
+                var tbody_html = '';
+                $.each(data.Files, function (index, value) {
+                    if (value.IsFile) {
+                        tbody_html += '<tr><td>' + value.Name + '</td><td><a href="javascript:;" data-path="' + value.Path + '">download</a></td></tr>';
+                    }
+                });
+                $('#files-table tbody').html(tbody_html);
+
+                $('#files-table a').click(function (event) {
+                    var path = $(this).attr('data-path');
+                    $('#download-form input[name=path]').val(path);
+                    $('#download-form').submit();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
